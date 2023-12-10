@@ -1,3 +1,4 @@
+import {setInner} from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.5/croot.js";
 
 window.uploadImage = uploadImage;
 
@@ -22,6 +23,7 @@ function uploadImage() {
     .then(data => {
         console.log(data);
         alert('Image uploaded successfully');
+        setInner("isi",data.content);
     })
     .catch(error => {
         console.error('Error:', error);
