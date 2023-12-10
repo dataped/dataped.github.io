@@ -1,3 +1,7 @@
+
+window.uploadImage = uploadImage;
+
+
 function uploadImage() {
     const input = document.getElementById('imageInput');
     const file = input.files[0];
