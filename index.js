@@ -10,7 +10,7 @@ function uploadImage() {
     const formData = new FormData();
     formData.append('image', file);
 
-    fetch('http://localhost:3000/upload', {
+    fetch('https://satudata.fly.dev/upload', {
         method: 'POST',
         body: formData,
     })
