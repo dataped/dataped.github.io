@@ -1,9 +1,11 @@
-import {setInner} from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.5/croot.js";
+import {setInner, show,hide} from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.5/croot.js";
 
 window.uploadImage = uploadImage;
 
 
 function uploadImage() {
+    hide("inputfile");
+
     const input = document.getElementById('imageInput');
     const file = input.files[0];
 
@@ -22,11 +24,12 @@ function uploadImage() {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        alert('Image uploaded successfully');
         setInner("isi",data.content);
+        show("inputfile");
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Error uploading image');
+        setInner("isi",data.error);
+        show("inputfile");
     });
 }
