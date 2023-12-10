@@ -1,35 +1,21 @@
 import {setInner, show,hide} from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.5/croot.js";
+import {postFile} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
 
 window.uploadImage = uploadImage;
 
+const target_url='https://satudata.fly.dev/upload';
 
 function uploadImage() {
     hide("inputfile");
-
-    const input = document.getElementById('imageInput');
-    const file = input.files[0];
-
     if (!file) {
         alert('Please select an image file');
         return;
     }
+    postFile(target_url,"imageInput","image",renderToHtml);
+}
 
-    const formData = new FormData();
-    formData.append('image', file);
-
-    fetch('https://satudata.fly.dev/upload', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        setInner("isi",data.content);
-        show("inputfile");
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        setInner("isi",data.error);
-        show("inputfile");
-    });
+function renderToHtml(result){
+    console.log(result);
+    setInner("isi",result.content);
+    show("inputfile");
 }
