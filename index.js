@@ -6,11 +6,11 @@ window.uploadImage = uploadImage;
 const target_url='https://satudata.fly.dev/upload';
 
 function uploadImage() {
-    hide("inputfile");
     if (!getValue("imageInput")) {
         alert('Please select an image file');
         return;
     }
+    hide("inputfile");
     postFile(target_url,"imageInput","image",renderToHtml);
 }
 
